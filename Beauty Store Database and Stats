@@ -35,3 +35,6 @@ SELECT AVG(price) FROM store;
 
 -- what are the 5 highest rated items?
 SELECT product, price, rating FROM store ORDER BY rating ASC LIMIT 5;
+
+-- what is the total price of the current stock of lipstick?
+SELECT SUM(stock*price) FROM store WHERE product = "lipstick";
