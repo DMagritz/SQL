@@ -1,0 +1,37 @@
+-- Create a store database
+
+CREATE TABLE store (id integer PRIMARY KEY, product TEXT, stock INTEGER, price INTEGER, rating INTEGER, aisle TEXT, vendor TEXT);
+
+INSERT INTO store VALUES (1, "eyeshadow", 50, 28, 6, "M4", "Juvias Place");
+INSERT INTO store VALUES (2, "lipstick", 50, 18, 1, "M6", "Revlon");
+INSERT INTO store VALUES (3, "mascara", 35, 12, 5, "M5", "Essence");
+INSERT INTO store VALUES (4, "foundation", 20, 15, 11, "M2", "Fenty Beauty");
+INSERT INTO store VALUES (5, "concealer", 25, 18, 13, "M2", "Tarte");
+INSERT INTO store VALUES (6, "eye primer", 20, 16, 4, "M4", "Urban Decay");
+INSERT INTO store VALUES (7, "false eyelashes", 25, 13, 2, "M5", "Juvias Place");
+INSERT INTO store VALUES (8, "face primer", 25, 15, 12, "M1", "Fenty Beauty");
+INSERT INTO store VALUES (9, "eyeliner", 30, 8, 15, "M5", "MakeUp Forever");
+INSERT INTO store VALUES (10, "eyebrow pencil", 25, 8, 8, "M3", "Tarte");
+INSERT INTO store VALUES (11, "eyebrow gel", 20, 9, 10, "M3", "Urban Decay");
+INSERT INTO store VALUES (12, "setting powder", 20, 17, 14, "M2", "Urban Decay");
+INSERT INTO store VALUES (13, "setting spray", 15, 22, 3, "M2", "Revlon");
+INSERT INTO store VALUES (14, "moisturizer", 15, 50, 9, "M1", "Juvias Place");
+INSERT INTO store VALUES (15, "lip liner", 35, 17, 7, "M6", "Fenty Beauty");
+
+-- display the database ordered by price
+SELECT * FROM store ORDER BY price DESC;
+
+-- list all the vendors used for store
+SELECT DISTINCT vendor FROM store ORDER BY vendor DESC;
+
+-- display database prices in ascending order
+SELECT price FROM store ORDER BY price ASC;
+
+-- what is the sum of the price for each item in the store?
+SELECT price, SUM(price) FROM store;
+
+-- what is the average price of items in the store?
+SELECT AVG(price) FROM store;
+
+-- what are the 5 highest rated items?
+SELECT product, price, rating FROM store ORDER BY rating ASC LIMIT 5;
