@@ -1,3 +1,5 @@
+-- Using advanced SELECT queries to discover information about a curated data set
+
 CREATE TABLE winstons_donut_logs (
     id INTEGER PRIMARY KEY,
     status TEXT,
@@ -59,22 +61,44 @@ INSERT INTO winstons_donut_logs VALUES (50, "old-ish adult winston lvl1", 50, 25
 INSERT INTO winstons_donut_logs VALUES (51, "old-ish adult winston lvl2", 51, 2500, "");
 INSERT INTO winstons_donut_logs VALUES (52, "old-ish adult winston lvl3", 52, 2500, "");
 INSERT INTO winstons_donut_logs VALUES (53, "old-ish adult winston lvl4", 53, 1436, "Current age");
-SELECT * FROM winstons_donut_logs;
+
+-- what is the sum of all donuts eaten during Winston's lifetime?
 SELECT SUM(donuts_eaten) FROM winstons_donut_logs;
+
+-- what is the average donuts eaten per year?
 SELECT ROUND(AVG(donuts_eaten)) FROM winstons_donut_logs;
+
+-- what is the maximum donuts eaten in any given year?
 SELECT MAX(donuts_eaten) FROM winstons_donut_logs;
+
+-- at what ages did Winston eat 2500 donuts or more?
 SELECT years_old, donuts_eaten FROM winstons_donut_logs WHERE donuts_eaten >= 2500;
+
+-- how many years did Winston eat 2500 donuts or more?
 SELECT COUNT(*) donuts_eaten FROM winstons_donut_logs WHERE donuts_eaten >= 2500;
+
+-- what is the minimum donuts eaten in any given year?
 SELECT MIN(donuts_eaten) FROM winstons_donut_logs;
+
+-- at what ages did Winston eat 0 donuts?
 SELECT years_old, donuts_eaten FROM winstons_donut_logs WHERE donuts_eaten = 0;
+
+-- how many years did Winston eat 0 donuts?
 SELECT COUNT(*) donuts_eaten FROM winstons_donut_logs WHERE donuts_eaten = 0;
+
+-- what ages did Winston eat 2000 or more donuts from mature adulthood and on?
 SELECT * FROM winstons_donut_logs WHERE years_old > 30 AND donuts_eaten > 2000;
+
+-- what is the total donuts eaten in Winston's 20s?
 SELECT SUM(donuts_eaten) FROM winstons_donut_logs WHERE years_old > 19 AND years_old < 30;
-SELECT donuts_eaten FROM winstons_donut_logs WHERE years_old > 19 AND years_old < 30;
-SELECT reason, SUM(donuts_eaten) AS total_donuts FROM winstons_donut_logs GROUP BY reason;
+
+-- for what reason did Winston eat the least amount of donuts throughout his life?
 SELECT reason, SUM(donuts_eaten) AS total_donuts FROM winstons_donut_logs GROUP BY reason HAVING total_donuts < 1000;
-SELECT status, reason, SUM(donuts_eaten) AS total_donuts FROM winstons_donut_logs GROUP BY reason;
-SELECT status FROM winstons_donut_logs WHERE status LIKE '%middle-aged%';
+
+-- how many donuts did Winston eat during his "middle-aged" years?
+SELECT donuts_eaten, status FROM winstons_donut_logs WHERE status LIKE '%middle-aged%';
+
+-- in which deccade of his life did Winston eat the most donuts?
 SELECT SUM(donuts_eaten),
     CASE
         WHEN years_old BETWEEN 0 AND 9 THEN "under 10"
