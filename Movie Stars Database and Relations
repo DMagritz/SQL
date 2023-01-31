@@ -13,6 +13,17 @@ INSERT INTO movie_stars VALUES (1, "Blake Lively", "1987-08-25", 35, "F", "Los A
 INSERT INTO movie_stars VALUES (2, "Ryan Reynolds", "1976-10-23", 46, "M", "Vancouver, Canada", "actor", 6);
 INSERT INTO movie_stars VALUES (3, "Emily Blunt", "1983-02-23", 39, "F", "London, England", "actress", 4);
 INSERT INTO movie_stars VALUES (4, "John Krasinski", "1979-10-20", 43, "M", "Boston, Massachusetts", "actor", 3);
+INSERT INTO movie_stars VALUES (5, "Anna Kendrick", "1985-08-09", 37, "F", "Portland, Maine", "actress, singer", 1);
+INSERT INTO movie_stars VALUES (6, "Harrison Ford", "1942-07-13", 80, "M", "Chicago, Illinois", "actor", 1);
+INSERT INTO movie_stars VALUES (7, "Zoe Saldana", "1978-06-19", 44, "F", "Passaic, New Jersey", "actress", 2);
+INSERT INTO movie_stars VALUES (8, "Jennifer Garner", "1972-04-17", 50, "F", "Houston, Texas", "actress", 2);
+INSERT INTO movie_stars VALUES (9, "Mark Ruffalo", "1967-11-22", 55, "M", "Kenosha, Wisconsin", "actor, producer", 2);
+INSERT INTO movie_stars VALUES (10, "Meryl Streep", "1949-06-22", 73, "F", "Summit, New Jersey", "actress", 3);
+INSERT INTO movie_stars VALUES (11, "Anne Hathaway", "1982-11-12", 40, "F", "Brooklyn, New York", "actress", 3);
+INSERT INTO movie_stars VALUES (12, "Stanley Tucci", "1960-11-11", 62, "M", "Peekskill, New York", "actor, filmmaker", 3);
+INSERT INTO movie_stars VALUES (13, "Ginnifer Goodwin", "1978-05-22", 44, "F", "Memphis, Tennessee", "actress", 4);
+INSERT INTO movie_stars VALUES (14, "Kate Hudson", "1979-04-19", 43, "F", "Los Angeles, California", "actress", 4);
+INSERT INTO movie_stars VALUES (15, "Steve Howey", "1977-07-12", 45, "M", "San Antonio, Texas", "actor", 4);
 
 CREATE TABLE movies (
     id INTEGER PRIMARY KEY,
@@ -29,11 +40,14 @@ INSERT INTO movies VALUES (6, "A Simple Favor", 2018, 1);
 INSERT INTO movies VALUES (7, "The Shallows", 2016, 1);
 INSERT INTO movies VALUES (8, "A Quiet Place 1", 2018, 4);
 INSERT INTO movies VALUES (9, "A Quiet Place 2", 2021, 4);
-INSERT INTO movies VALUES (10, "A Quiet Place 1", 2018, 3);
-INSERT INTO movies VALUES (11, "A Quiet Place 2", 2021, 3);
-INSERT INTO movies VALUES (12, "The Proposal", 2009, 2);
-INSERT INTO movies VALUES (13, "Promised Land", 2013, 4);
-INSERT INTO movies VALUES (14, "The Adam Project", 2022, 2);
+INSERT INTO movies VALUES (10, "Pitch Perfect 1", 2012, 5);
+INSERT INTO movies VALUES (11, "Pitch Perfect 2", 2015, 5);
+INSERT INTO movies VALUES (12, "Pitch Perfect 3", 2017, 5);
+INSERT INTO movies VALUES (13, "A Quiet Place 1", 2018, 3);
+INSERT INTO movies VALUES (14, "A Quiet Place 2", 2021, 3);
+INSERT INTO movies VALUES (15, "The Proposal", 2009, 2);
+INSERT INTO movies VALUES (16, "Promised Land", 2013, 4);
+INSERT INTO movies VALUES (17, "The Adam Project", 2022, 2);
 
 CREATE TABLE movie_star_couples (
     id INTEGER PRIMARY KEY,
