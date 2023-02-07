@@ -1,4 +1,4 @@
--- Using advanced SELECT queries to discover information about a curated data set
+-- In this SQL, I'm using advanced SELECT queries to discover information about a curated data set
 
 CREATE TABLE winstons_donut_logs (
     id INTEGER PRIMARY KEY,
