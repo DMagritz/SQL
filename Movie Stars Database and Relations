@@ -1,4 +1,4 @@
-/* Create table about the movie stars and what they do here */
+-- In this SQL, I'm creating a database about movie stars and what they do, as well as aggregating data about the movie stars using multiple joins.
 CREATE TABLE movie_stars (
     id INTEGER PRIMARY KEY,
     name TEXT,
