@@ -1,0 +1,101 @@
+--For this project, I downloaded a database called Chinook, which represents a digital media store. 
+--Using this dataset, I came up with several questions I would like to answer.
+--I then used SQL to perform analytics on the data.
+
+--
+--How many employees are there by title?
+SELECT Title, COUNT(*) AS EmpCount
+FROM employees 
+GROUP BY Title;
+
+--Show the employees who are Sales Agents
+SELECT EmployeeId, FirstName, LastName
+FROM employees
+WHERE Title = 'Sales Support Agent';
+
+--Which 5 countries place the most orders?
+SELECT BillingCountry, COUNT(*) AS CountryCt
+FROM invoices
+GROUP BY BillingCountry
+ORDER BY CountryCt DESC
+LIMIT 5;
+
+--Show customers who are not in the US
+SELECT CustomerId, FirstName, LastName, Country
+FROM customers
+WHERE Country <> 'USA';
+
+--Find the invoices of all customers from France
+SELECT i.InvoiceId, i.InvoiceDate, c.FirstName, c.LastName, i.BillingCountry
+FROM invoices i
+JOIN customers c
+ON i.CustomerId = c.CustomerId
+WHERE i.BillingCountry = 'France';
+
+--Find a distinct list of countries from the Invoice table
+SELECT DISTINCT BillingCountry
+FROM invoices;
+
+--Show the number of invoices per customer
+SELECT i.CustomerId, COUNT(*), c.FirstName, c.LastName
+FROM invoices i
+JOIN customers c
+ON i.CustomerId = c.CustomerId
+GROUP BY i.CustomerId;
+
+--Show invoices associated with each sales agent
+SELECT e.FirstName, e.LastName, i.InvoiceId
+FROM employees e
+JOIN customers c ON e.EmployeeId = c.SupportRepId
+JOIN invoices i ON c.CustomerId = i.CustomerId
+ORDER BY e.FirstName, e.LastName, i.InvoiceId;
+
+--How many Invoices were there in 2011?
+SELECT COUNT(*)
+FROM invoices 
+WHERE InvoiceDate BETWEEN '2011-01-01' AND '2011-12-31';
+
+--What are the total sales for 2011?
+SELECT SUM(Total)
+FROM invoices
+WHERE InvoiceDate BETWEEN '2011-01-01' AND '2011-12-31';
+
+--Show the purchased track name and artist name with each invoice line ID.
+SELECT art.Name, t.Name, i.InvoiceLineId
+FROM tracks t
+JOIN invoice_items i ON t.TrackId = i.TrackId
+JOIN albums a ON a.AlbumId = t.AlbumId
+JOIN artists art ON art.ArtistId = a.ArtistId;
+
+--Show all the tracks, and include the album name, media type, and genre.
+SELECT t.Name Track, a.Title Album, m.Name Media, g.Name Genre
+FROM tracks t
+JOIN albums a ON t.AlbumId = a.AlbumId
+JOIN media_types m ON t.MediaTypeId = m.MediaTypeId
+JOIN genres g ON t.GenreId = g.GenreId;
+
+--Show the total sales made by each sales agent.
+SELECT ROUND(SUM(i.Total) ,2) AS 'Total Sales', e.FirstName, e.LastName
+FROM invoices i 
+JOIN customers c ON i.CustomerId = c.CustomerId
+JOIN employees e ON c.SupportRepId = e.EmployeeId
+GROUP BY e.FirstName, e.LastName;
+
+--Which sales agent made the most dollars in sales in 2011?
+SELECT ROUND(SUM(i.Total) ,2) AS 'Total Sales', e.FirstName, e.LastName
+FROM invoices i 
+JOIN customers c ON i.CustomerId = c.CustomerId
+JOIN employees e ON c.SupportRepId = e.EmployeeId
+WHERE e.Title = 'Sales Support Agent'
+AND i.InvoiceDate LIKE '2011%'
+GROUP BY e.FirstName, e.LastName
+ORDER BY (round(sum(i.Total), 2)) DESC;
+
+--What is the most common genre found in playlists?
+SELECT g.Name, COUNT(t.GenreId) AS 'Frequency'
+FROM genres g
+JOIN tracks t ON g.GenreId = t.GenreId
+JOIN playlist_track p ON t.TrackId = p.TrackId
+GROUP BY g.Name
+ORDER BY (COUNT(t.GenreId)) DESC
+LIMIT 1;
