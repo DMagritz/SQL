@@ -18,23 +18,23 @@ INSERT INTO store VALUES (13, "setting spray", 15, 22, 3, "M2", "Revlon");
 INSERT INTO store VALUES (14, "moisturizer", 15, 50, 9, "M1", "Juvias Place");
 INSERT INTO store VALUES (15, "lip liner", 35, 17, 7, "M6", "Fenty Beauty");
 
--- display the database ordered by price
+--Display the database ordered by price.
 SELECT * FROM store ORDER BY price DESC;
 
--- list all the vendors used for store
+--List all the vendors used for store.
 SELECT DISTINCT vendor FROM store ORDER BY vendor DESC;
 
--- display database prices in ascending order
+--Display database prices in ascending order.
 SELECT price FROM store ORDER BY price ASC;
 
--- what is the sum of the price for each item in the store?
+--What is the sum of the price for each item in the store?
 SELECT price, SUM(price) FROM store;
 
--- what is the average price of items in the store?
+--What is the average price of items in the store?
 SELECT AVG(price) FROM store;
 
--- what are the 5 highest rated items?
+--What are the 5 highest rated items?
 SELECT product, price, rating FROM store ORDER BY rating ASC LIMIT 5;
 
--- what is the total price of the current stock of lipstick?
+--What is the total price of the current stock of lipstick?
 SELECT SUM(stock*price) FROM store WHERE product = "lipstick";
