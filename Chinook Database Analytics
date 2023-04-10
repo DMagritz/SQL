@@ -2,13 +2,13 @@
 --Using this dataset, I came up with several questions I would like to answer.
 --I then used SQL to perform analytics on the data.
 
---
+
 --How many employees are there by title?
 SELECT Title, COUNT(*) AS EmpCount
 FROM employees 
 GROUP BY Title;
 
---Show the employees who are Sales Agents
+--Show the employees who are Sales Agents.
 SELECT EmployeeId, FirstName, LastName
 FROM employees
 WHERE Title = 'Sales Support Agent';
@@ -20,30 +20,30 @@ GROUP BY BillingCountry
 ORDER BY CountryCt DESC
 LIMIT 5;
 
---Show customers who are not in the US
+--Show customers who are not in the US.
 SELECT CustomerId, FirstName, LastName, Country
 FROM customers
 WHERE Country <> 'USA';
 
---Find the invoices of all customers from France
+--Find the invoices of all customers from France.
 SELECT i.InvoiceId, i.InvoiceDate, c.FirstName, c.LastName, i.BillingCountry
 FROM invoices i
 JOIN customers c
 ON i.CustomerId = c.CustomerId
 WHERE i.BillingCountry = 'France';
 
---Find a distinct list of countries from the Invoice table
+--Find a distinct list of countries from the Invoice table.
 SELECT DISTINCT BillingCountry
 FROM invoices;
 
---Show the number of invoices per customer
+--Show the number of invoices per customer.
 SELECT i.CustomerId, COUNT(*), c.FirstName, c.LastName
 FROM invoices i
 JOIN customers c
 ON i.CustomerId = c.CustomerId
 GROUP BY i.CustomerId;
 
---Show invoices associated with each sales agent
+--Show invoices associated with each sales agent.
 SELECT e.FirstName, e.LastName, i.InvoiceId
 FROM employees e
 JOIN customers c ON e.EmployeeId = c.SupportRepId
