@@ -1,4 +1,4 @@
--- In this SQL, I'm creating a database about movie stars and what they do, as well as aggregating data about the movie stars using multiple joins.
+--In this SQL, I'm creating a database about movie stars and what they do, as well as aggregating data about the movie stars using multiple joins.
 CREATE TABLE movie_stars (
     id INTEGER PRIMARY KEY,
     name TEXT,
@@ -57,19 +57,19 @@ CREATE TABLE movie_star_couples (
 INSERT INTO movie_star_couples VALUES (1, 1, 2);
 INSERT INTO movie_star_couples VALUES (2, 3, 4);
 
--- which movie stars are in each movie?
+--Which movie stars are in each movie?
 SELECT movie_stars.name, movies.name
     FROM movie_stars
     LEFT JOIN movies
     ON movie_stars.id = movies.movie_star_id;
 
--- which movie stars are co-stars?
+--Which movie stars are co-stars?
 SELECT movie_stars.name, costars.name AS costar
     FROM movie_stars
     JOIN movie_stars AS costars
     ON movie_stars.costar_id = costars.id;
 
--- which movie stars are couples?
+--Which movie stars are couples?
 SELECT a.name, b.name FROM movie_star_couples
     JOIN movie_stars AS a
     ON movie_star_couples.moviestar1_id = a.id 
